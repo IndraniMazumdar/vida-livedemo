@@ -1,7 +1,3 @@
-from pathlib import Path
-
-# Revised app.py with distinct emotion labels and clinician interpretations
-revised_app_code = """
 import streamlit as st
 import time
 
@@ -76,7 +72,7 @@ else:
 # Final Combined Summary
 st.markdown("---")
 st.header("📋 Combined Clinician Summary")
-final_summary = f\"\"\"
+final_summary = f"""
 Segment 1: Subdued or Thoughtful
 {seg1_notes}
 
@@ -85,13 +81,7 @@ Segment 2: Controlled or Guarded
 
 Segment 3: Calm Neutrality
 {seg3_notes}
-\"\"\"
+"""
 
 st.text_area("Full Summary (Editable):", final_summary, height=300)
 st.download_button("📥 Download Combined Summary", data=final_summary, file_name="vida_segmented_summary.txt")
-"""
-
-# Save to file
-revised_app_path = Path("/mnt/data/app_segment_refined.py")
-revised_app_path.write_text(revised_app_code)
-revised_app_path.name
