@@ -1,87 +1,73 @@
 import streamlit as st
 import time
+from pathlib import Path
 
-st.set_page_config(page_title="VIDA – Per-Segment Emotion Analysis", layout="wide")
-st.title("🎬 VIDA – Analyze Emotional Segments Separately")
-st.markdown("_Play and analyze each clip individually for high-resolution emotional insight._")
+st.set_page_config(page_title="Vida – Multimodal AI Analysis", layout="wide")
+
+st.title("Vida – Multimodal Emotion & Risk Screening")
+st.markdown("_Voice + Text + Facial Emotion Analysis for Mental Health Triage_")
 st.markdown("---")
 
-# Segment 1
-st.header("🎥 Segment 1 – Initial Response")
-st.video("static/CREMA_sample_1.mp4")
-if st.button("Analyze Segment 1"):
-    with st.spinner("Analyzing Segment 1..."):
-        time.sleep(2)
-    st.success("Analysis Complete!")
-    st.json({
-        "Detected Emotion": "Subdued or Thoughtful",
-        "Confidence": 0.72,
-        "Observations": [
-            "Low expressiveness",
-            "Inward-focused affect",
-            "Subtle hesitation"
-        ]
-    })
-    seg1_notes = st.text_area("Clinician Notes – Segment 1", 
-        "Patient appears reflective and internally focused. May be processing thoughts before responding.")
-else:
-    seg1_notes = ""
+# 1. Display Video
+st.header("Patient Video Session")
+video_path = "static/my_video.mp4"
+st.video(video_path)
 
-# Segment 2
-st.header("🎥 Segment 2 – Emotional Guarding")
-st.video("static/CREMA_sample_2.mp4")
-if st.button("Analyze Segment 2"):
-    with st.spinner("Analyzing Segment 2..."):
-        time.sleep(2)
-    st.success("Analysis Complete!")
-    st.json({
-        "Detected Emotion": "Controlled or Guarded",
-        "Confidence": 0.72,
-        "Observations": [
-            "Intentional affect regulation",
-            "Minimal spontaneous expression",
-            "Patient may be emotionally present but cautious"
-        ]
-    })
-    seg2_notes = st.text_area("Clinician Notes – Segment 2", 
-        "Patient displays controlled demeanor, potentially signaling caution or guarded emotional sharing.")
-else:
-    seg2_notes = ""
-
-# Segment 3
-st.header("🎥 Segment 3 – Conversational Neutrality")
-st.video("static/CREMA_sample_3.mp4")
-if st.button("Analyze Segment 3"):
-    with st.spinner("Analyzing Segment 3..."):
-        time.sleep(2)
-    st.success("Analysis Complete!")
-    st.json({
-        "Detected Emotion": "Calm Neutrality",
-        "Confidence": 0.72,
-        "Observations": [
-            "Balanced emotional tone",
-            "Low but present engagement",
-            "Relaxed and conversational state"
-        ]
-    })
-    seg3_notes = st.text_area("Clinician Notes – Segment 3", 
-        "Patient demonstrates calm, neutral tone. No signs of distress; likely in a steady state of engagement.")
-else:
-    seg3_notes = ""
-
-# Final Combined Summary
+# 2. Simulated Transcription (Whisper output)
 st.markdown("---")
-st.header("📋 Combined Clinician Summary")
-final_summary = f"""
-Segment 1: Subdued or Thoughtful
-{seg1_notes}
+st.header("Voice Transcription")
+if st.button("Run Transcription"):
+    with st.spinner("Transcribing audio using Whisper..."):
+        time.sleep(2)
+    st.success("Transcription complete!")
+    transcription = (
+        "Lately I just… feel empty. I don’t have the energy to get out of bed some days. I’m not really sleeping, but I’m always tired. "
+        "It’s like nothing really matters anymore — I just feel stuck. I used to enjoy things like music or cooking, but now I just go through the motions."
+    )
+    st.text_area("Transcribed Text", transcription, height=180)
 
-Segment 2: Controlled or Guarded
-{seg2_notes}
+# 3. NLP Risk & Sentiment Analysis
+st.markdown("---")
+st.header("NLP-Based Risk & Sentiment Insights")
+if st.button("Run Text Risk Analysis"):
+    with st.spinner("Analyzing text for affective and risk cues..."):
+        time.sleep(2)
+    st.success("Analysis complete.")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Sentiment", "Negative")
+        st.metric("Emotion Detected", "Sadness")
+    with col2:
+        st.metric("Keyphrase: Anhedonia", "✔️")
+        st.metric("Sleep Disturbance", "✔️")
+    with col3:
+        st.metric("Risk Level", "Moderate")
+        st.metric("LLM Confidence", "92%")
 
-Segment 3: Calm Neutrality
-{seg3_notes}
-"""
+# 4. Facial Emotion & Gaze (Simulated MediaPipe output)
+st.markdown("---")
+st.header("Facial Emotion & Gaze Tracking")
+if st.button("Run Video Emotion Analysis"):
+    with st.spinner("Detecting gaze, facial emotion, and micro-expressions..."):
+        time.sleep(2)
+    st.success("Facial analysis complete.")
+    col4, col5, col6 = st.columns(3)
+    with col4:
+        st.metric("Facial Emotion", "Low Energy")
+        st.metric("Mouth Movement", "Minimal")
+    with col5:
+        st.metric("Gaze Direction", "Downward")
+        st.metric("Blink Rate", "Reduced")
+    with col6:
+        st.metric("Posture", "Slouched")
+        st.metric("Expressivity", "Low")
 
-st.text_area("Full Summary (Editable):", final_summary, height=300)
-st.download_button("📥 Download Combined Summary", data=final_summary, file_name="vida_segmented_summary.txt")
+# 5. Final Summary Panel
+st.markdown("---")
+st.header("📋 Clinician Review Summary")
+summary = (
+    "Patient exhibits signs of emotional exhaustion and detachment. Voice tone is flat with low variation. Facial features including gaze and expressivity suggest depressive affect. "
+    "Transcribed content supports symptoms of anhedonia, fatigue, and social withdrawal. Risk level moderate. Recommend follow-up psychological evaluation."
+)
+st.text_area("Editable Summary", summary, height=180)
+st.download_button("Download Summary", summary, file_name="vida_clinical_summary.txt")
