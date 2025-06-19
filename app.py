@@ -21,8 +21,7 @@ if st.button("Run Transcription"):
         time.sleep(2)
     st.success("Transcription complete!")
     transcription = (
-        "Lately I just… feel empty. I don’t have the energy to get out of bed some days. I’m not really sleeping, but I’m always tired. "
-        "It’s like nothing really matters anymore — I just feel stuck. I used to enjoy things like music or cooking, but now I just go through the motions."
+        "Lately, I just feel empty. I don't have the energy to get out of the bed some days. I'm not really sleeping very well. I'm always tired. It's like nothing really matters anymore. I just feel very stuck. I used to enjoy a lot of things such as gymming and cooking but I just go through the motions now. People keep asking if I'm okay. I see I'm fine but I'm not really fine."
     )
     st.text_area("Transcribed Text", transcription, height=180)
 
