@@ -8,7 +8,7 @@ st.markdown("---")
 
 # Segment 1
 st.header("🎥 Segment 1 – Sad Clip")
-st.video("CREMA_sample_1.mp4")
+st.video("static/CREMA_sample_1.mp4")
 if st.button("Analyze Segment 1"):
     with st.spinner("Analyzing Segment 1..."):
         time.sleep(2)
@@ -24,7 +24,7 @@ else:
 
 # Segment 2
 st.header("🎥 Segment 2 – Happy Clip")
-st.video("CREMA_sample_2.mp4")
+st.video("static/CREMA_sample_2.mp4")
 if st.button("Analyze Segment 2"):
     with st.spinner("Analyzing Segment 2..."):
         time.sleep(2)
@@ -40,7 +40,7 @@ else:
 
 # Segment 3
 st.header("🎥 Segment 3 – Neutral Clip")
-st.video("CREMA_sample_3.mp4")
+st.video("static/CREMA_sample_3.mp4")
 if st.button("Analyze Segment 3"):
     with st.spinner("Analyzing Segment 3..."):
         time.sleep(2)
@@ -54,7 +54,7 @@ if st.button("Analyze Segment 3"):
 else:
     seg3_notes = ""
 
-# Final Summary
+# Final Combined Summary
 st.markdown("---")
 st.header("📋 Combined Clinician Summary")
 final_summary = f"""
