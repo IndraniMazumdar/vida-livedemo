@@ -4,8 +4,7 @@ from pathlib import Path
 
 st.set_page_config(page_title="Vida – Multimodal AI Analysis", layout="wide")
 
-st.title("Vida – Multimodal Emotion & Risk Screening")
-st.markdown("_Voice + Text + Facial Emotion Analysis for Mental Health Triage_")
+st.title("Vida – Multimodal Emotion Analysis for Mental Health Triage")
 st.markdown("---")
 
 # 1. Display Video
