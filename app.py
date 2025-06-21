@@ -25,7 +25,7 @@ st.markdown(
 
 # --- Clip 1 ---
 st.markdown("---")
-st.markdown("## Question 1: I’d like to start by checking in — how have you been feeling lately, both physically and emotionally?")
+st.markdown("## Question 1: I’d like to start by checking in, how have you been feeling lately, both physically and emotionally?")
 st.video("static/my_video_clip_1.mp4")
 
 # --- Analysis 1 ---
