@@ -7,7 +7,7 @@ st.set_page_config(page_title="Vida – Multimodal AI Intake", layout="wide")
 st.markdown(
     """
     <div style='display: flex; align-items: center;'>
-        <img src='https://raw.githubusercontent.com/indranimazumdar/vida-livedemo/main/static/vida_logo.png' width='60'>
+        <img src='https://raw.githubusercontent.com/indranimazumdar/vida-livedemo/main/static/avatar.png' width='60'>
         <h1 style='padding-left: 15px;'>Vida – Multimodal Emotion Analysis for Mental Health Triage</h1>
     </div>
     <p style='font-size:16px; color:gray;'>AI-powered intake assistant analyzing patient speech, facial cues, and emotional state.</p>
@@ -17,7 +17,7 @@ st.markdown(
 
 # --- Welcome Message ---
 st.markdown("---")
-st.markdown("### 🩺 Welcome")
+st.markdown("### Welcome")
 st.markdown(
     "Thank you for checking in. This brief session will guide you through a couple of simple questions. "
     "Our assistant will analyze the video, transcribe your response, and provide emotional risk insights to help clinicians understand how you’re feeling."
