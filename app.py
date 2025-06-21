@@ -1,67 +1,77 @@
 import streamlit as st
 import time
 
-st.set_page_config(page_title="Vida – Multimodal AI Analysis", layout="wide")
+st.set_page_config(page_title="Vida – Multimodal AI Intake", layout="wide")
 
-st.title("Vida – Multimodal Emotion Analysis for Mental Health Triage")
-st.markdown("_Analyzing facial expressions, voice tone, and emotional risk from patient video clips._")
+# --- Custom Header with Logo ---
+st.markdown(
+    """
+    <div style='display: flex; align-items: center;'>
+        <img src='https://raw.githubusercontent.com/indranimazumdar/vida-livedemo/main/static/vida_logo.png' width='60'>
+        <h1 style='padding-left: 15px;'>Vida – Multimodal Emotion Analysis for Mental Health Triage</h1>
+    </div>
+    <p style='font-size:16px; color:gray;'>AI-powered intake assistant analyzing patient speech, facial cues, and emotional state.</p>
+    """,
+    unsafe_allow_html=True
+)
+
+# --- Welcome Message ---
 st.markdown("---")
+st.markdown("### 🩺 Welcome")
+st.markdown(
+    "Thank you for checking in. This brief session will guide you through a couple of simple questions. "
+    "Our assistant will analyze the video, transcribe your response, and provide emotional risk insights to help clinicians understand how you’re feeling."
+)
 
-# 🔹 Clip 1: Initial Check-in
-st.header("🟢 Question 1: I’d like to start by checking in, how have you been feeling lately, both physically and emotionally?")
+# --- Clip 1 ---
+st.markdown("---")
+st.markdown("## Question 1: I’d like to start by checking in — how have you been feeling lately, both physically and emotionally?")
 st.video("static/my_video_clip_1.mp4")
 
+# --- Analysis 1 ---
 if st.button("Run Analysis for Clip 1"):
-    with st.spinner("Analyzing Clip 1..."):
+    with st.spinner("Analyzing response..."):
         time.sleep(2)
     st.success("Analysis complete.")
-
-    st.subheader("Transcript")
-    st.info("Lately, I just feel empty. I don't have the energy to get out of the bed some days. I'm not really sleeping very well. I'm always tired. It's like nothing really matters anymore.")
-
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Sentiment", "Negative")
-        st.metric("Emotion", "Hopelessness")
+        st.metric("Facial Emotion", "Tired / Flat")
+        st.metric("Blink Rate", "Low")
     with col2:
-        st.metric("Sleep Issues", "✔️")
-        st.metric("Energy Level", "Low")
+        st.metric("Sentiment", "Negative")
+        st.metric("Gaze", "Downcast")
     with col3:
-        st.metric("Facial Emotion", "Fatigued")
-        st.metric("Risk Level", "Moderate")
+        st.metric("Energy Level", "Low")
+        st.metric("Speech Rate", "Slow")
 
+# --- Clip 2 ---
 st.markdown("---")
-
-# 🔹 Clip 2: Chained Follow-up
-st.header("🟡 Question 2: Do you ever find yourself going through the motions in your daily life, even with things you used to love?")
+st.markdown("## Question 2: Do you ever find yourself going through the motions in your daily life, even with things you used to love?")
 st.video("static/my_video_clip_2.mp4")
 
+# --- Analysis 2 ---
 if st.button("Run Analysis for Clip 2"):
-    with st.spinner("Analyzing Clip 2..."):
+    with st.spinner("Analyzing response..."):
         time.sleep(2)
     st.success("Analysis complete.")
-
-    st.subheader("Transcript")
-    st.info("I just feel very stuck. I used to enjoy a lot of things such as gymming and cooking but I just go through the motions now. People keep asking if I'm okay. I say I'm fine but I'm not really fine.")
-
     col4, col5, col6 = st.columns(3)
     with col4:
-        st.metric("Sentiment", "Negative")
-        st.metric("Emotion", "Anhedonia")
+        st.metric("Facial Emotion", "Resigned")
+        st.metric("Posture", "Slouched")
     with col5:
-        st.metric("Social Withdrawal", "✔️")
-        st.metric("Masking Emotion", "✔️")
+        st.metric("Sentiment", "Negative")
+        st.metric("Confidence", "93%")
     with col6:
-        st.metric("Facial Emotion", "Low Expressivity")
-        st.metric("Risk Level", "Elevated")
+        st.metric("Expressivity", "Low")
+        st.metric("Keyphrase", "Disengagement")
 
+# --- Final Summary ---
 st.markdown("---")
-st.header("📋 Final Clinician Summary")
-summary = (
-    "Across both clips, the patient presents signs of fatigue, anhedonia, and emotional masking. "
-    "Clip 1 reflects physical exhaustion and sleep disturbance. "
-    "Clip 2 emphasizes social withdrawal and a loss of joy in previously enjoyed activities. "
-    "Moderate to elevated risk. Recommend structured follow-up and psychological assessment."
+st.markdown("## 📋 Clinician Review Summary")
+summary_text = (
+    "Patient expresses emotional fatigue and detachment. Verbal and visual cues suggest depressive affect. "
+    "There is a notable decline in motivation and interest in previously enjoyed activities. "
+    "Speech is low-energy, posture is slouched, and expressivity is minimal. Recommend follow-up screening."
 )
-st.text_area("Editable Summary", summary, height=180)
-st.download_button("Download Summary", summary, file_name="vida_clinical_summary.txt")
+st.text_area("Editable Summary", summary_text, height=200)
+st.download_button("📥 Download Summary", summary_text, file_name="vida_summary.txt")
