@@ -74,4 +74,4 @@ summary_text = (
     "Speech is low-energy, posture is slouched, and expressivity is minimal. Recommend follow-up screening."
 )
 st.text_area("Editable Summary", summary_text, height=200)
-st.download_button("📥 Download Summary", summary_text, file_name="vida_summary.txt")
+st.download_button("Download Summary", summary_text, file_name="vida_summary.txt")
